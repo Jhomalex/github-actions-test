@@ -53,6 +53,17 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       -
+        name: List files
+        run: |
+          echo "Listing root directory:"
+          ls -la
+          echo "Listing .docker/images/nginx-ci/ directory:"
+          ls -la .docker/images/nginx-ci/
+          echo ".docker/ directory:"
+          ls -la .docker/
+          echo "./ directory:"
+          ls -la ./
+      -
         name: Build and (not) push
         uses: docker/build-push-action@v5
         with:
