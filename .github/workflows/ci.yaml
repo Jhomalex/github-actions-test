@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
     - 
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
     - 
       name: Setup Node.js
       uses: actions/setup-node@v4
@@ -58,6 +58,8 @@ jobs:
           echo "Listing root directory:"
           echo "./ directory:"
           ls -la ./
+          echo "../ directory:"
+          ls -la ../
       -
         name: Build and (not) push
         uses: docker/build-push-action@v5
