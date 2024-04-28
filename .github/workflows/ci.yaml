@@ -39,7 +39,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: dist
-          path: dist
+          path: .
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -59,3 +59,4 @@ jobs:
           push: false
           tags: jhomalex/github-actions-test:${{ github.sha }}
           file: .docker/images/nginx-ci/Dockerfile
+          context: .
