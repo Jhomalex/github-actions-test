@@ -33,6 +33,12 @@ jobs:
   docker:
     runs-on: ubuntu-22.04
     steps:
+      - 
+        name: Download dist directory
+        uses: actions/download-artifact@v2
+        with:
+          name: dist
+          path: dist
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v3
