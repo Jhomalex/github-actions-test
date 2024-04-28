@@ -60,6 +60,10 @@ jobs:
           ls -la ./
           echo "../ directory:"
           ls -la ../
+          echo "../../ directory:"
+          ls -la ../../
+          echo "Checking for .docker directory explicitly:"
+          ls -la ./.docker/
       -
         name: Build and (not) push
         uses: docker/build-push-action@v5
