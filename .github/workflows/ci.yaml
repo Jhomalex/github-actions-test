@@ -26,3 +26,4 @@ jobs:
         with:
           push: false
           tags: jhomalex/github-actions-test:${{ github.sha }}
+          file: .docker/docker-compose.yaml
