@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+    nginx:
+      container_name: nginx
+      build:
+        context: ./images/nginx
+        dockerfile: Dockerfile
+      ports:
+        - '80:80'
+        - '443:443'
+      environment:
+        - NGINX_HOST
+        - NGINX_PORT
+      volumes:
+        - ./images/nginx/templates:/etc/nginx/templates
+        - /etc/letsencrypt:/etc/letsencrypt
+        - /var/lib/letsencrypt:/var/lib/letsencrypt
+      restart: unless-stopped
+      networks:
+        - github-actions
+      stdin_open: true
+      tty: true
+      depends_on:
+        - node
+        - certbot
+  
+    certbot:
+      container_name: certbot
+      image: certbot/dns-route53:latest
+      environment:
+        - AWS_ACCESS_KEY_ID
+        - AWS_SECRET_ACCESS_KEY
+      command:
+        certonly --dns-route53 --dns-route53-propagation-seconds 300 --email
+        ${CERTBOT_EMAIL} --agree-tos --no-eff-email -d ${NGINX_HOST}
+      volumes:
+        - /etc/letsencrypt:/etc/letsencrypt
+        - /var/lib/letsencrypt:/var/lib/letsencrypt
+      stdin_open: true
+      tty: true
+      restart: unless-stopped
+      networks:
+        - github-actions
+
+    node:
+      container_name: node
+      build:
+        context: ./images/node
+        dockerfile: Dockerfile
+      volumes:
+        - ..:~/github-actions-test
+      working_dir: ~/github-actions-test
+      restart: unless-stopped
+      stdin_open: true
+      tty: true
+      networks:
+        - github-actions
+
+networks:
+  github-actions:
