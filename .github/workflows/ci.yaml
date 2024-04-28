@@ -5,6 +5,31 @@ on:
 
 name: CI
 jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+    - 
+      uses: actions/checkout@v2
+    - 
+      name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18'
+    - 
+      name: Install pnpm and dependencies
+      run: |
+        npm install -g pnpm
+        pnpm install
+    - 
+      name: Build the project
+      run: pnpm run build
+    - 
+      name: Upload dist directory to artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: dist
+        path: dist/
+
   docker:
     runs-on: ubuntu-22.04
     steps:
@@ -26,4 +51,4 @@ jobs:
         with:
           push: false
           tags: jhomalex/github-actions-test:${{ github.sha }}
-          file: .docker/docker-compose.yaml
+          file: .docker/images/nginx-ci/Dockerfile
