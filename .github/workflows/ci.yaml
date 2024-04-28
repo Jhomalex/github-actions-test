@@ -56,11 +56,6 @@ jobs:
         name: List files
         run: |
           echo "Listing root directory:"
-          ls -la
-          echo "Listing .docker/images/nginx-ci/ directory:"
-          ls -la .docker/images/nginx-ci/
-          echo ".docker/ directory:"
-          ls -la .docker/
           echo "./ directory:"
           ls -la ./
       -
