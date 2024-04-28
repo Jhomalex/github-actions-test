@@ -2,7 +2,7 @@ server {
     listen 443 ssl;
     server_name  ${NGINX_HOST};
 
-    root /root/github-actions-test/dist;
+    root /var/github-actions-test/dist;
     index index.html;
     
     client_max_body_size 10M;
@@ -18,7 +18,7 @@ server {
 
         # proxy_pass https://node:3000;
 
-        root /root/github-actions-test/dist;
+        root /var/github-actions-test/dist;
         try_files $uri $uri/ /index.html =404;
 
         #proxy_http_version 1.1;

@@ -12,7 +12,7 @@ services:
       environment:
         - NGINX_HOST
       volumes:
-        - ..:/root/github-actions-test
+        - ..:/var/github-actions-test
         - ./images/nginx/templates:/etc/nginx/templates
         - /etc/letsencrypt:/etc/letsencrypt
         - /var/lib/letsencrypt:/var/lib/letsencrypt
