@@ -27,12 +27,12 @@ server {
 
 }
 
-upstream ws {
+#upstream ws {
     # enable sticky session based on IP
-    ip_hash;
+#    ip_hash;
 
-    server node:3000;
-}
+#    server node:3000;
+#}
 
 server {
     listen 80;
