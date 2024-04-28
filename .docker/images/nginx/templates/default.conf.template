@@ -17,8 +17,8 @@ server {
 
         # proxy_pass https://node:3000;
 
-        root ~/github-actions-test/dist;
-        try_files $uri  /index.html;
+        root /root/github-actions-test/dist;
+        try_files $uri $uri/ /index.html;
 
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
