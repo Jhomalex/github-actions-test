@@ -13,7 +13,10 @@ server {
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header Host $host;
 
-        proxy_pass https://node:3000;
+        # proxy_pass https://node:3000;
+
+        root ~/github-actions-test/dist;
+        try_files $uri  /index.html;
 
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;

@@ -11,8 +11,8 @@ services:
         - '443:443'
       environment:
         - NGINX_HOST
-        - NGINX_PORT
       volumes:
+        - ..:~/github-actions-test
         - ./images/nginx/templates:/etc/nginx/templates
         - /etc/letsencrypt:/etc/letsencrypt
         - /var/lib/letsencrypt:/var/lib/letsencrypt
