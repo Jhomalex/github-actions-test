@@ -12,7 +12,7 @@ services:
       environment:
         - NGINX_HOST
       volumes:
-        - ..:~/github-actions-test
+        - ..:/root/github-actions-test
         - ./images/nginx/templates:/etc/nginx/templates
         - /etc/letsencrypt:/etc/letsencrypt
         - /var/lib/letsencrypt:/var/lib/letsencrypt
@@ -49,8 +49,8 @@ services:
         context: ./images/node
         dockerfile: Dockerfile
       volumes:
-        - ..:~/github-actions-test
-      working_dir: ~/github-actions-test
+        - ..:/root/github-actions-test
+      working_dir: /root/github-actions-test
       restart: unless-stopped
       stdin_open: true
       tty: true
